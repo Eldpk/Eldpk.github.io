@@ -18,7 +18,7 @@
     <h2>Weather Resources</h2>
 
     <div class="controls">
-    <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterLinks()">
+    <input type="text" id="searchInput" placeholder="Search... (Press '/' to start typing)" onkeyup="filterLinks()">
     <button id="sortBtn" onclick="toggleSort()">Sort by Type</button>
 </div>
 
@@ -188,6 +188,15 @@ function toggleSort() {
     grid.innerHTML = "";
     cards.forEach(card => grid.appendChild(card));
 }
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
+        e.preventDefault(); 
+        const searchInput = document.getElementById('searchInput');
+        searchInput.focus();
+        searchInput.select(); 
+    }
+});
 
 toggleSort();
 </script>
