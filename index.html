@@ -5,20 +5,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paul Eldridge, Meteorology Student</title>
     <style>
+        /* --- CORE STYLES (MATCHES CONTACT PAGE) --- */
         body {
             font-family: sans-serif;
+            margin: 0;
+            background: #f4f7f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px; 
+            background-color: white;
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        /* --- NAVBAR STYLES --- */
+        .nav-logo {font-weight: bold;font-size: 20px;color: #0077cc;text-decoration: none;}
+        .nav-links a {text-decoration: none;color: #666;margin-left: 20px;font-size: 14px;transition: color 0.2s;}
+        .nav-links a:hover {color: #0077cc;}
+        .nav-links a.active {color: #0077cc;font-weight: bold;}
+
+        /* --- LAYOUT --- */
+        .content {
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background: #f4f7f6;
-            color: #333;
+            padding: 20px;
+            text-align: center;
         }
-        h1 { margin-bottom: 10px; }
-        p { margin-bottom: 30px; color: #666; }
+        h1 {margin-bottom: 10px; color: #2c3e50;}
+        p.subtitle {margin-bottom: 40px; color: #666; max-width: 600px; line-height: 1.6;}
 
+        /* --- WIDGET GRID SYSTEM ---*/
+        .widget-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 900px;
+            justify-content: center;
+        }
+        .widget-card {
+            background: white;
+            aspect-ratio: 1 / 1; 
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .widget-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #0077cc;
+        }
+
+        .widget-image-header {
+            position: relative;
+            width: 100%;
+            height: 55%;
+            background: #eee;
+            overflow: hidden;
+        }
+
+        .widget-hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            transition: opacity 0.3s ease, transform 0.5s ease;
+        }
+
+        .widget-image-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to bottom, transparent, white);
+            pointer-events: none;
+        }
+
+        .widget-text-content {
+            padding: 20px 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .widget-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .widget-card:hover .widget-img {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .widget-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .widget-desc {
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* --- HOMEPAGE BUTTON STYLES --- */
         .entry-btn {
             padding: 15px 40px;
             background-color: #0077cc;
@@ -29,15 +153,48 @@
             font-weight: bold;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.2s, background-color 0.2s;
+            margin-top: 20px;
+        }
+
+        .entry-btn:hover {
+            background-color: #005fa3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+
+        .entry-btn:active {
+            transform: translateY(0);
         }
     </style>
 </head>    
 <body>
 
-    <h1>Paul Eldridge, Meteorology Student</h1>
-    <p>More coming soon...</p>
+    <nav class="navbar">
+        <a href="/" class="nav-logo">Paul Eldridge</a>
+        <div class="nav-links">
+            <a href="/" class="active">Home</a>
+            <a href="/weather_links">Weather Links</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </nav>
 
-    <a href="/links" class="entry-btn">Weather Links</a>
+    <main class="content">
+        <h1>Paul Eldridge</h1>
+        <p class="subtitle">Meteorology Student at Northern Illinois University</p>
+
+        <div class="widget-grid">
+            <a href="/weather_links/" class="widget-card">
+                <div class="widget-image-header">
+                    <img src="images/weather_links.png" alt="Computer with Weather Maps" class="widget-hero-img">
+                </div>
+                
+                <div class="widget-text-content">
+                    <div class="widget-title">Weather Links</div>
+                    <div class="widget-desc">Some useful links</div>
+                </div>
+            </a>
+        </div>
+    </main>
     
 </body>
 </html>
